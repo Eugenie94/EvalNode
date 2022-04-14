@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { UserModel } = require('../Models/User')
 
 module.exports = {
-    user: (req, res) => {
+    user: async(req,res) => {
         UserModel.findById(req.body.id, (err, user) => {
             if (err) {
                 res.status(500).send(err)
@@ -20,7 +20,7 @@ module.exports = {
                 if (!users) {
                     res.status(404).send('Aucun auteur trouvé')
                 }
-                res.status(200).render('index', {
+                res.status(200).render('users', {
                     users
                 })
             }
@@ -39,12 +39,19 @@ module.exports = {
                     error: err
                 })
             } else {
-                res.status(200).redirect('/user')
+                res.status(200).redirect('/users')
             }
         })
     },
+    updateUser: (req, res) => {
+        UserModel.findByIdAndUpdate(req.params.id, req.body, (err, users) => {
+            res.json({
+                users
+            })
+        })
+    },
     deleteUser: (req, res) => {
-        UserModel.deleteMany({ name: req.body.name}, (err, users) => {
+        UserModel.findByIdAndDelete(req.params.id, (err, users) => {
             res.json({
                 users
             })

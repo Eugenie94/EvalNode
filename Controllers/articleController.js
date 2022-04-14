@@ -41,7 +41,7 @@ module.exports = {
                             error: err
                         })
                     } else {
-                        res.status(200).redirect('/article')
+                        res.status(200).redirect('/')
                     }
                 })
             }
@@ -74,24 +74,20 @@ module.exports = {
         })
         
     },
-    getArticleById: (req, res) => {
-        ArticleModel.findById(req.params.id, (err, article) => {
-            if (err) {
-                res.status(500).json({
-                    message: 'Error when getting article',
-                    error: err.message
-                })
-            }
-            else {
-                res.status(200).json({
-                    message: 'Article retrieved',
-                    article
-                })
-            }
+    getArticleById: async(req,res) => {
+        const article = await ArticleModel.findById(req.params.id).populate('user')
+      
+        return res.status(200).render('article',{article})
+    },
+    updateArticle: (req, res) => {
+        ArticleModel.findByIdAndUpdate(req.params.id, req.body, (err, articles) => {
+            res.json({
+                articles
+            })
         })
     },
-    deleteArticles: (req, res) => {
-        ArticleModel.deleteMany({ name: req.body.name}, (err, articles) => {
+    deleteArticle: (req, res) => {
+        ArticleModel.findByIdAndDelete(req.params.id, (err, articles) => {
             res.json({
                 articles
             })

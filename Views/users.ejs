@@ -1,42 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <body>
-    <% if (users.length > 0) { %>
-        <h3> Tous les utilisateurs</h3>
-        <table border="1" cellpadding="15"> 
-          <tr>
-              <th>User n°</th>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Age</th>
-          </tr>
-        
-          <% i = 1 %>
-            <% users.map( user => { %>
-              <tr></tr>
-                <td><%= i++ %></td>
-                <td><%= user.firstname %></td>
-                <td> <%= user.lastname %></td>
-                <td> <%= user.age %> ans</td>
-              </tr>
-            <% }) %>
-        </table>
-      <% } else { %>
-        <p>Aucun utilisateur</p>
-      <% } %>
-      <br>
-      <h3> Créer un utilisateur</h3>
+  <%- include('includes/header') %>
     <form action="/user" method="post">
-        <input type="text" placeholder = "Prénom" name="firstname">
-        <input type="text" placeholder = "Nom" name="lastname" >
-        <input type="text" placeholder = "Age" name="age">
+        <input type="text" name="firstname" id="firstname">
+        <input type="text" name="lastname" id="lastname">
+        <input type="text" name="age" id="age">
         <input type="submit" value="Submit">
     </form>
+    <% if (users && users.length > 0) { %>
+        <ul>
+            <% users.map( user => { %>
+                <li>
+                  <%= user.firstname %> <%= user.lastname %> <%= user.age %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Aucun user</p>
+    <% } %>
+    <%- include('includes/footer') %>
 </body>
-</html>
