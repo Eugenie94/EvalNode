@@ -5,7 +5,9 @@ module.exports = {
     user: async(req,res) => {
         UserModel.findById(req.body.id, (err, user) => {
             if (err) {
-                res.status(500).send(err)
+                res.status(500).render('error', {
+                    error: err
+                })
             } else {
                 res.render('user', { user })
             }
@@ -14,7 +16,9 @@ module.exports = {
     users: (req, res) => {
         UserModel.find({}, (err, users) => {
             if (err) {
-                res.status(500).send(err)
+                res.status(500).render('error', {
+                    error: err
+                })
             }
             else {
                 if (!users) {
