@@ -49,6 +49,9 @@ module.exports = {
     },
     updateUser: (req, res) => {
         UserModel.findByIdAndUpdate(req.params.id, req.body, (err, users) => {
+            if(err) {
+                res.status(404).json({message: "Pas trouvé"})
+            }
             res.json({
                 users
             })
@@ -56,6 +59,9 @@ module.exports = {
     },
     deleteUser: (req, res) => {
         UserModel.findByIdAndDelete(req.params.id, (err, users) => {
+            if(err) {
+                res.status(404).json({message: "Pas trouvé"})
+            }
             res.json({
                 users
             })
