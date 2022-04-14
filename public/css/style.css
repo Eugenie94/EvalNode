@@ -17,3 +17,23 @@ p {
     color: #ff9beb;
     margin: 0 0 10px 0;
 }
+
+li {
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+a:link {
+    font-size: 25px;
+    text-decoration:none; 
+}
+
+input {
+    padding: 10px 40px;
+    font-size: 16px;
+}
+
+select {
+    padding: 11px 20px;
+}

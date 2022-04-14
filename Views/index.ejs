@@ -1,8 +1,8 @@
 <body>
     <%- include('includes/header') %>
     <form action="/" method="post">
-        <input type="text" name="title" id="title">
-        <input type="text" name="description" id="description">
+        <input type="text" name="title" id="title" placeholder="title">
+        <input type="text" name="description" id="description" placeholder="description">
         <select name="user" id="user">
             <% users.map( user => { %>
                 <option value="<%= user._id %>"><%= user.firstname %></option>
@@ -13,9 +13,9 @@
     <% if (articles && articles.length > 0) { %>
         <ul>
             <% articles.map( article => { %>
-                <li>
+                <li></br>
                     <a href="/article/<%= article._id %>">
-                        <%= article.title %> <%= article.description %>
+                        Titre: <%= article.title %> </br>Description: <%= article.description %>
                     </a>
                 </li>
             <% }) %>

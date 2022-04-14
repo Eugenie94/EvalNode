@@ -82,7 +82,7 @@ module.exports = {
     updateArticle: (req, res) => {
         ArticleModel.findByIdAndUpdate(req.params.id, req.body, (err, articles) => {
             if(err) {
-                res.status(404).json({message: "Pas trouvé"})
+                res.status(404).json({message: "Article introuvable"})
             }
             res.json({
                 articles
@@ -92,7 +92,7 @@ module.exports = {
     deleteArticle: (req, res) => {
         ArticleModel.findByIdAndDelete(req.params.id, (err, articles) => {
             if(err) {
-                res.status(404).json({message: "Pas trouvé"})
+                res.status(404).json({message: "Article introuvable"})
             }
             res.json({
                 articles

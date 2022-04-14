@@ -1,9 +1,9 @@
 <body>
   <%- include('includes/header') %>
     <form action="/user" method="post">
-        <input type="text" name="firstname" id="firstname">
-        <input type="text" name="lastname" id="lastname">
-        <input type="text" name="age" id="age">
+        <input type="text" name="firstname" id="firstname" placeholder="firstname">
+        <input type="text" name="lastname" id="lastname" placeholder="lastname">
+        <input type="text" name="age" id="age" placeholder="age">
         <input type="submit" value="Submit">
     </form>
     <% if (users && users.length > 0) { %>

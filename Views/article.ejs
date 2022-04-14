@@ -1,8 +1,8 @@
     <body>
         <%- include('includes/header') %>
         <h1>Article n°<%= article._id %></h1>
-        <p>Name: <%= article.title %></p>
+        <p>Titre: <%= article.title %></p>
         <p>Description: <%= article.description %></p>
-        <p>User associé: <%= article.user.firstname || "Utilisateur inexistant" %></p>
+        <p>User associé: <%= article.user || "Utilisateur inexistant" %></p>
     </body>
     <%- include('includes/footer') %>
